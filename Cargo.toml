@@ -1,0 +1,9 @@
+[package]
+name = "slabcache"
+version = "0.1.0"
+authors = ["Davis Wahl <daviswahl@gmail.com>"]
+
+[dependencies]
+slab = "*"
+tokio-core = "*"
+rand = "*"
