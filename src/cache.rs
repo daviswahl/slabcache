@@ -90,7 +90,7 @@ pub struct Cache<K, V> {
     partitions: Vec<Arc<Mutex<Partition<K, V>>>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug,Clone)]
 pub struct CacheHandle<K, V> {
     partition_count: usize,
     cache: *mut Cache<K, V>,
