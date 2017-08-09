@@ -63,13 +63,9 @@ impl<K: Hash + Eq + fmt::Debug + Clone, V: Clone + fmt::Debug> Partition<K, V> {
         let index = self.indexes.get(&hash).cloned();
         match index {
             None => {
-                self.slab
-                    .insert(Bucket::Full(entry, None))
-                    .map(|idx| { self.indexes.insert(hash, idx); })
-                    .map_err(|bucket| match bucket {
-                        Bucket::Empty => unreachable!(),
-                        Bucket::Full(e, _) => e,
-                    })
+                let idx = self.slab .insert(Bucket::Full(entry, None));
+                self.indexes.insert(hash, idx);
+                Ok(())
             }
 
             Some(idx) => Ok(self.slab.get_mut(idx).unwrap().insert(entry)),

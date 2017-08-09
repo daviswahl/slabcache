@@ -4,6 +4,6 @@ version = "0.1.0"
 authors = ["Davis Wahl <daviswahl@gmail.com>"]
 
 [dependencies]
-slab = "*"
+slab = "0.4"
 tokio-core = "*"
 rand = "*"
