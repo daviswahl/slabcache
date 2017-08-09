@@ -154,7 +154,7 @@ impl<K: Hash + Eq + fmt::Debug + Clone, V: Clone + fmt::Debug> CacheHandle<K, V>
 }
 
 impl<K: Hash + Eq + fmt::Debug + Clone, V: Clone + fmt::Debug> Cache<K, V> {
-    fn new(capacity: usize, partition_count: usize) -> Cache<K, V> {
+    pub fn new(capacity: usize, partition_count: usize) -> Cache<K, V> {
         let mut partitions = Vec::with_capacity(partition_count);
 
         for _ in 0..partition_count {
@@ -171,7 +171,7 @@ impl<K: Hash + Eq + fmt::Debug + Clone, V: Clone + fmt::Debug> Cache<K, V> {
         self.partitions[slot].clone()
     }
 
-    fn handle(&mut self) -> CacheHandle<K, V> {
+    pub fn handle(&mut self) -> CacheHandle<K, V> {
         CacheHandle {
             cache: self,
             partition_count: self.partition_count,
